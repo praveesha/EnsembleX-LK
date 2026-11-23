@@ -100,9 +100,5 @@ elif page == "Price Predictor":
             "Vehicle_Age": listing_year - yom, "Listing_Month": month
         }])
         prediction = float(model.predict(row)[0])
-        price_lakhs = prediction
-        price_lkr = price_lakhs * 100000
-
-        st.success(f"Estimated asking price: LKR {price_lkr:,.0f}")
-        st.caption(f"Equivalent to {price_lakhs:.2f} Lakhs")
+        st.success(f"Estimated asking price: {prediction:,.2f} (original dataset units)")
         st.caption("This is a model estimate, not a professional valuation or guaranteed sale price.")
