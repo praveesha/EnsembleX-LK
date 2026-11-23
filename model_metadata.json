@@ -1,0 +1,35 @@
+{
+  "project": "EnsembleX LK",
+  "target": "Price",
+  "target_units": "Original dataset units; verify source documentation",
+  "selected_model": "Stacking Regressor",
+  "random_state": 42,
+  "test_size": 0.2,
+  "feature_columns": [
+    "Brand",
+    "Model",
+    "YOM",
+    "Engine (cc)",
+    "Gear",
+    "Fuel Type",
+    "Millage(KM)",
+    "Town",
+    "Leasing",
+    "Condition",
+    "AIR CONDITION",
+    "POWER STEERING",
+    "POWER MIRROR",
+    "POWER WINDOW",
+    "Listing_Year",
+    "Vehicle_Age",
+    "Listing_Month"
+  ],
+  "training_rows": 7830,
+  "testing_rows": 1958,
+  "metrics": {
+    "MAE": 5.33819675070682,
+    "RMSE": 13.641004655572715,
+    "R2": 0.8963135458284409
+  },
+  "note": "Predictions estimate listed asking prices, not confirmed transaction prices."
+}
