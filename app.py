@@ -1,4 +1,3 @@
-
 import os
 import joblib
 import pandas as pd
@@ -8,7 +7,7 @@ import plotly.express as px
 st.set_page_config(page_title="EnsembleX LK", page_icon="🚗", layout="wide")
 
 BASE = os.path.dirname(os.path.abspath(__file__))
-OUT = os.path.join(BASE, "ensemblex_lk_outputs")
+OUT = BASE
 MODEL_PATH = os.path.join(OUT, "ensemblex_lk_best_pipeline.joblib")
 RESULTS_PATH = os.path.join(OUT, "model_comparison.csv")
 IMPORTANCE_PATH = os.path.join(OUT, "permutation_importance.csv")
