@@ -24,11 +24,11 @@ model = joblib.load(MODEL_PATH)
 results = pd.read_csv(RESULTS_PATH) if os.path.exists(RESULTS_PATH) else pd.DataFrame()
 importance = pd.read_csv(IMPORTANCE_PATH) if os.path.exists(IMPORTANCE_PATH) else pd.DataFrame()
 
-page = st.sidebar.radio("Navigate", [
+overview_tab, comparison_tab, insights_tab, predictor_tab = st.tabs([
     "Overview", "Model Comparison", "Feature Insights", "Price Predictor"
 ])
 
-if page == "Overview":
+with overview_tab:
     st.subheader("Project overview")
     st.write("A supervised regression experiment comparing bagging, boosting, stacking and a heterogeneous voting ensemble.")
     if not results.empty:
@@ -43,7 +43,7 @@ if page == "Overview":
     st.info("Output is in the original dataset price units. Verify the source's unit convention before interpreting as currency.")
     st.warning("This model estimates advertised listing prices, not verified transaction values.")
 
-elif page == "Model Comparison":
+with comparison_tab:
     st.subheader("Model performance")
     if results.empty:
         st.warning("No model_comparison.csv found.")
@@ -55,7 +55,7 @@ elif page == "Model Comparison":
                                x="Model", y=metric, title=f"{metric} comparison"),
                         use_container_width=True)
 
-elif page == "Feature Insights":
+with insights_tab:
     st.subheader("Permutation feature importance")
     if not importance.empty:
         top = importance.sort_values("Importance_Mean").tail(15)
@@ -66,7 +66,7 @@ elif page == "Feature Insights":
     else:
         st.warning("Feature importance output not found.")
 
-elif page == "Price Predictor":
+with predictor_tab:
     st.subheader("Estimate an advertised vehicle price")
     st.caption("The prediction is in the original dataset's price units.")
     with st.form("prediction_form"):
